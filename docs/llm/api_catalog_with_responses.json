@@ -1,0 +1,108 @@
+{
+  "project": {
+    "name": "Public API Explorer",
+    "version": "1.0.0",
+    "description": "A comprehensive collection of public APIs for LLMs and Telegram bots",
+    "base_url": "http://127.0.0.1:8000",
+    "docs_url": "http://127.0.0.1:8000/docs",
+    "total_api_providers": 35,
+    "total_endpoints": 100,
+    "authentication_required": "~10% of APIs",
+    "last_updated": "2025-03-31"
+  },
+  "categories": [
+    {
+      "id": "crypto_finance",
+      "name": "Cryptocurrency & Finance",
+      "prefix": "/finance",
+      "description": "Cryptocurrency prices, market data, and financial information",
+      "apis": [
+        {
+          "id": "coingecko",
+          "name": "CoinGecko",
+          "base_url": "https://api.coingecko.com/api/v3",
+          "auth_required": false,
+          "endpoints": [
+            {
+              "path": "/finance/crypto/coingecko/coins",
+              "method": "GET",
+              "summary": "List cryptocurrencies with market data",
+              "direct_url": "https://api.coingecko.com/api/v3/coins/markets",
+              "parameters": [
+                {
+                  "name": "vs_currency",
+                  "type": "query",
+                  "default": "usd",
+                  "description": "Currency to compare against"
+                },
+                {
+                  "name": "per_page",
+                  "type": "query",
+                  "default": 50,
+                  "min": 1,
+                  "max": 250,
+                  "description": "Results per page"
+                },
+                {
+                  "name": "page",
+                  "type": "query",
+                  "default": 1,
+                  "min": 1,
+                  "description": "Page number"
+                }
+              ],
+              "tags": ["cryptocurrency", "prices", "market-data"],
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+echo "Updated at": ${new Date().toISOString()}`);
+````
+],
+  {
+    "id": "weather",
+    "name": "Weather",
+    "prefix": "/weather",
+    "description": "Weather forecasts, current conditions, and alerts",
+    "apis": [
+      {
+        "id": "open_meteo",
+        "name": "Open-Meteo",
+        "base_url": "https://api.open-meteo.com/v1",
+        "auth_required": false,
+        "endpoints": [
+          {
+            "path": "/weather/open-meteo",
+            "method": "GET",
+            "summary": "Get current weather and forecast",
+            "direct_url": "https://api.open-meteo.com/v1/forecast",
+            "parameters": [
+              {
+                "name": "latitude",
+                "type": "query",
+                "required": true,
+                "description": "Latitude coordinate"
+              },
+              {
+                "name": "longitude",
+                "type": "query",
+                "required": true,
+                "description": "Longitude coordinate"
+              },
+              {
+                "name": "current_weather",
+                "type": "query",
+                "default": "true",
+                "description": "Include current weather data"
+              }
+            ],
+            "tags": ["weather", "forecast", "current-weather", "temperature"]
+          }
+        }
+      ]
+    }
+  ]
+}
