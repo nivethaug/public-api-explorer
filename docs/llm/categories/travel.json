@@ -1,0 +1,84 @@
+{
+  "category": "travel",
+  "name": "Travel",
+  "description": "Travel information, attractions, timezones, and destinations",
+  "prefix": "/travel",
+  "apis": [
+    {
+      "id": "rest_countries_travel",
+      "name": "REST Countries (Travel)",
+      "base_url": "https://restcountries.com/v3.1",
+      "auth_required": false,
+      "endpoints": [
+        {
+          "path": "/travel/capital/{country}",
+          "method": "GET",
+          "summary": "Get capital city by country",
+          "direct_url": "https://restcountries.com/v3.1/name/{country}",
+          "parameters": [
+            {"name": "country", "type": "path", "description": "Country name"}
+          ],
+          "sample_request": "https://restcountries.com/v3.1/name/france",
+          "sample_response": [
+            {
+              "name": {"common": "France", "official": "French Republic"},
+              "capital": ["Paris"],
+              "region": "Europe",
+              "population": 67390000,
+              "latlng": [46.0, 2.0],
+              "area": 640679.0,
+              "currencies": {"EUR": {"name": "Euro", "symbol": "€"}},
+              "languages": {"fra": "French"}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opentripmap",
+      "name": "OpenTripMap",
+      "base_url": "https://api.opentripmap.com/places",
+      "auth_required": false,
+      "rate_limited": true,
+      "endpoints": [
+        {
+          "path": "/travel/opentripmap/places",
+          "method": "GET",
+          "summary": "Search places and attractions",
+          "direct_url": "https://api.opentripmap.com/places",
+          "parameters": [
+            {"name": "query", "type": "query", "required": true, "description": "Search query"},
+            {"name": "radius", "type": "query", "default": 1000, "description": "Search radius in meters"}
+          ],
+          "sample_request": "https://api.opentripmap.com/places?query=paris",
+          "sample_response": {
+            "features": [
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [2.2945, 48.8584]
+                },
+                "properties": {
+                  "xid": "N1234567890",
+                  "name": "Eiffel Tower",
+                  "dist": 0,
+                  "rate": 3,
+                  "osm": "node",
+                  "kinds": "towers,monuments_and_memorials,interesting_places,other_monuments"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    "Find travel attractions and landmarks",
+    "Plan trips",
+    "Get country information",
+    "Check timezones for travel destinations",
+    "Find nearby points of interest"
+  ]
+}

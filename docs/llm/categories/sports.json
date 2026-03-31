@@ -1,0 +1,132 @@
+{
+  "category": "sports",
+  "name": "Sports",
+  "description": "Sports data, scores, teams, and player information",
+  "prefix": "/sports",
+  "apis": [
+    {
+      "id": "balldontlie",
+      "name": "Ball Don't Lie",
+      "base_url": "https://www.balldontlie.io/api/v1",
+      "auth_required": false,
+      "endpoints": [
+        {
+          "path": "/sports/nba/players",
+          "method": "GET",
+          "summary": "Get NBA players",
+          "direct_url": "https://www.balldontlie.io/api/v1/players",
+          "sample_request": "https://www.balldontlie.io/api/v1/players?per_page=2",
+          "sample_response": {
+            "data": [
+              {
+                "id": 115,
+                "first_name": "LeBron",
+                "last_name": "James",
+                "position": "F",
+                "height_feet": 6,
+                "height_inches": 9,
+                "weight_pounds": 250,
+                "team": {
+                  "id": 14,
+                  "abbreviation": "LAL",
+                  "city": "Los Angeles",
+                  "conference": "West",
+                  "division": "Pacific",
+                  "full_name": "Los Angeles Lakers",
+                  "name": "Lakers"
+                }
+              }
+            ],
+            "meta": {
+              "total_pages": 67,
+              "current_page": 1,
+              "next_page": 2,
+              "per_page": 2,
+              "total_count": 133
+            }
+          }
+        },
+        {
+          "path": "/sports/nba/teams",
+          "method": "GET",
+          "summary": "Get NBA teams",
+          "direct_url": "https://www.balldontlie.io/api/v1/teams",
+          "sample_request": "https://www.balldontlie.io/api/v1/teams",
+          "sample_response": {
+            "data": [
+              {
+                "id": 1,
+                "abbreviation": "ATL",
+                "city": "Atlanta",
+                "conference": "East",
+                "division": "Southeast",
+                "full_name": "Atlanta Hawks",
+                "name": "Hawks"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ergast",
+      "name": "Ergast F1 API",
+      "base_url": "https://ergast.com/api/f1",
+      "auth_required": false,
+      "endpoints": [
+        {
+          "path": "/sports/f1/current/drivers",
+          "method": "GET",
+          "summary": "Get current F1 drivers",
+          "direct_url": "https://ergast.com/api/f1/current/driverStandings.json",
+          "sample_request": "https://ergast.com/api/f1/current/driverStandings.json",
+          "sample_response": {
+            "MRData": {
+              "xmlns": "http://ergast.com/mrd/1.5",
+              "series": "f1",
+              "url": "http://ergast.com/api/f1/current/driverstandings.json",
+              "limit": "30",
+              "offset": "0",
+              "total": "1",
+              "DriverStandingsTable": {
+                "season": "2025",
+                "DriverStandings": [
+                  {
+                    "position": "1",
+                    "positionText": "1",
+                    "points": "125",
+                    "wins": "3",
+                    "Driver": {
+                      "driverId": "verstappen",
+                      "permanentNumber": "1",
+                      "code": "VER",
+                      "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+                      "givenName": "Max",
+                      "familyName": "Verstappen",
+                      "dateOfBirth": "1997-09-30",
+                      "nationality": "Dutch"
+                    },
+                    "Constructors": [
+                      {
+                        "constructorId": "red_bull",
+                        "url": "http://en.wikipedia.org/wiki/Red_Bull_Racing",
+                        "name": "Red Bull",
+                        "nationality": "Austrian"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    "Get sports scores and standings",
+    "Track team and player information",
+    "Monitor sports events",
+    "Get racing championships data"
+  ]
+}

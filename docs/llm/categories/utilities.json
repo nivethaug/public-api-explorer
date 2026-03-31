@@ -1,0 +1,162 @@
+{
+  "category": "utilities",
+  "name": "Utilities & Tools",
+  "description": "Utility functions like QR codes, color info, hashing, UUIDs, timestamps",
+  "prefix": "/utilities",
+  "apis": [
+    {
+      "id": "qrserver",
+      "name": "QR Server",
+      "base_url": "https://api.qrserver.com/v1",
+      "auth_required": false,
+      "endpoints": [
+        {
+          "path": "/utilities/qr/generate",
+          "method": "GET",
+          "summary": "Generate QR code",
+          "direct_url": "https://api.qrserver.com/v1/create-qr-code/",
+          "parameters": [
+            {"name": "text", "type": "query", "required": true, "description": "Text to encode"},
+            {"name": "size", "type": "query", "default": 150, "description": "QR code size in pixels"}
+          ],
+          "sample_request": "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=HelloWorld",
+          "sample_response": "Returns QR code image binary data",
+          "note": "This endpoint returns QR code image, not JSON"
+        }
+      ]
+    },
+    {
+      "id": "thecolorapi",
+      "name": "TheColorAPI",
+      "base_url": "https://www.thecolorapi.com",
+      "auth_required": false,
+      "endpoints": [
+        {
+          "path": "/utilities/color/info",
+          "method": "GET",
+          "summary": "Get color information",
+          "direct_url": "https://www.thecolorapi.com/id",
+          "parameters": [
+            {"name": "hex_color", "type": "query", "required": true, "description": "Hex color code"}
+          ],
+          "sample_request": "https://www.thecolorapi.com/id?hex=24B1E0",
+          "sample_response": {
+            "hex": {
+              "value": "#24B1E0",
+              "clean": "24B1E0"
+            },
+            "rgb": {
+              "fraction": {
+                "r": 0.141176,
+                "g": 0.694118,
+                "b": 0.878431
+              },
+              "r": 36,
+              "g": 177,
+              "b": 224,
+              "value": "rgb(36, 177, 224)"
+            },
+            "hsl": {
+              "fraction": {
+                "h": 0.538,
+                "s": 0.757,
+                "l": 0.51
+              },
+              "h": 193,
+              "s": 76,
+              "l": 51,
+              "value": "hsl(193, 76%, 51%)"
+            },
+            "name": {
+              "value": "Summer Sky",
+              "closest_named_hex": "#1AB4FF",
+              "exact_match_name": false,
+              "distance": 125
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "uuid_generator",
+      "name": "UUID Generator",
+      "base_url": "Local",
+      "provider": "Python uuid module",
+      "auth_required": false,
+      "endpoints": [
+        {
+          "path": "/utilities/uuid/generate",
+          "method": "GET",
+          "summary": "Generate UUID",
+          "parameters": [
+            {"name": "version", "type": "query", "default": 4, "description": "UUID version (1, 3, 4, or 5)"}
+          ],
+          "sample_response": {
+            "uuid": "550e8400-e29b-41d4-a716-446655440000",
+            "version": 4,
+            "generated_at": "2025-03-31T14:30:00Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hashlib",
+      "name": "Hashing",
+      "base_url": "Local",
+      "provider": "Python hashlib module",
+      "auth_required": false,
+      "endpoints": [
+        {
+          "path": "/utilities/hash/text",
+          "method": "GET",
+          "summary": "Hash text",
+          "parameters": [
+            {"name": "text", "type": "query", "required": true, "description": "Text to hash"},
+            {"name": "algorithm", "type": "query", "default": "sha256", "description": "Hash algorithm"}
+          ],
+          "sample_response": {
+            "text": "Hello, World!",
+            "algorithm": "sha256",
+            "hash": "dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f",
+            "length": 64
+          }
+        }
+      ]
+    },
+    {
+      "id": "datetime",
+      "name": "Timestamp Generator",
+      "base_url": "Local",
+      "provider": "Python datetime module",
+      "auth_required": false,
+      "endpoints": [
+        {
+          "path": "/utilities/timestamp/current",
+          "method": "GET",
+          "summary": "Get current timestamp",
+          "parameters": [
+            {"name": "timezone", "type": "query", "default": "UTC", "description": "Timezone"}
+          ],
+          "sample_response": {
+            "unix_timestamp": 1711843200,
+            "iso_8601": "2025-03-31T14:30:00Z",
+            "utc": "2025-03-31 14:30:00 UTC",
+            "year": 2025,
+            "month": 3,
+            "day": 31,
+            "hour": 14,
+            "minute": 30,
+            "second": 0
+          }
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    "Generate QR codes",
+    "Get color information",
+    "Generate unique identifiers",
+    "Hash text for security",
+    "Get current time and timestamps"
+  ]
+}
