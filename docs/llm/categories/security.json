@@ -1,0 +1,234 @@
+{
+  "category": "security",
+  "name": "Security & Threat Intelligence",
+  "description": "Cybersecurity data, vulnerability information, and threat intelligence",
+  "prefix": "/security",
+  "apis": [
+    {
+      "id": "ukpolice",
+      "name": "UK Police Data",
+      "base_url": "https://data.police.uk/api",
+      "auth_required": false,
+      "rate_limited": false,
+      "endpoints": [
+        {
+          "path": "/security/police/forces",
+          "method": "GET",
+          "summary": "Get UK police forces list",
+          "direct_url": "https://data.police.uk/api/forces",
+          "sample_request": "https://data.police.uk/api/forces",
+          "sample_response": [
+            {
+              "id": "avon-and-somerset",
+              "name": "Avon and Somerset Constabulary"
+            },
+            {
+              "id": "bedfordshire",
+              "name": "Bedfordshire Police"
+            },
+            {
+              "id": "cambridgeshire",
+              "name": "Cambridgeshire Constabulary"
+            }
+          ]
+        },
+        {
+          "path": "/security/police/crimes",
+          "method": "GET",
+          "summary": "Get crime statistics by location",
+          "direct_url": "https://data.police.uk/api/crimes-at-location",
+          "parameters": [
+            {"name": "lat", "type": "query", "required": true, "description": "Latitude (-90 to 90)"},
+            {"name": "lng", "type": "query", "required": true, "description": "Longitude (-180 to 180)"},
+            {"name": "date", "type": "query", "required": false, "description": "Date in YYYY-MM format (e.g., '2023-01')"}
+          ],
+          "sample_request": "https://data.police.uk/api/crimes-at-location?lat=51.5&lng=-0.1&date=2023-01",
+          "sample_response": [
+            {
+              "category": "anti-social-behaviour",
+              "location_type": "Force",
+              "location": {
+                "latitude": "51.500000",
+                "street": {
+                  "id": 123456,
+                  "name": "On or near High Street"
+                },
+                "longitude": "-0.100000"
+              },
+              "context": "",
+              "outcome_status": null,
+              "persistent_id": "abc123",
+              "id": 789012345,
+              "location_subtype": "",
+              "month": "2023-01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "urlhaus",
+      "name": "URLhaus",
+      "base_url": "https://urlhaus-api.abuse.ch/v1",
+      "auth_required": false,
+      "rate_limited": true,
+      "endpoints": [
+        {
+          "path": "/security/urlhaus/recent",
+          "method": "GET",
+          "summary": "Get recent malicious URLs from URLhaus",
+          "direct_url": "https://urlhaus-api.abuse.ch/v1/urls/recent/",
+          "parameters": [
+            {"name": "limit", "type": "query", "default": 10, "description": "Number of results (1-100)"}
+          ],
+          "sample_request": "https://urlhaus-api.abuse.ch/v1/urls/recent/",
+          "sample_response": {
+            "query_status": "ok",
+            "urls": [
+              {
+                "id": 123456,
+                "urlhaus_reference": "https://urlhaus.abuse.ch/url/123456/",
+                "url": "http://malicious-site.com/malware.exe",
+                "url_status": "online",
+                "date_added": "2025-03-31T12:00:00Z",
+                "threat": "malware_download",
+                "tags": ["exe", "malware"],
+                "urlhaus_link": "https://urlhaus.abuse.ch/url/123456/",
+                "file_type": "exe",
+                "first_seen": "2025-03-31T12:00:00Z",
+                "last_seen": "2025-03-31T12:30:00Z"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "nvd",
+      "name": "National Vulnerability Database (NVD)",
+      "base_url": "https://services.nvd.nist.gov/rest/json/cves/2.0",
+      "auth_required": false,
+      "rate_limited": true,
+      "endpoints": [
+        {
+          "path": "/security/nvd/cves",
+          "method": "GET",
+          "summary": "Search CVE vulnerabilities from NVD",
+          "direct_url": "https://services.nvd.nist.gov/rest/json/cves/2.0",
+          "parameters": [
+            {"name": "keyword", "type": "query", "required": false, "description": "Keyword search"},
+            {"name": "results_per_page", "type": "query", "default": 10, "description": "Results per page (1-100)"}
+          ],
+          "sample_request": "https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=log4j&resultsPerPage=10",
+          "sample_response": {
+            "resultsPerPage": 10,
+            "startIndex": 0,
+            "totalResults": 150,
+            "format": "NVD_CVE",
+            "version": "2.0",
+            "timestamp": "2025-03-31T12:00:00.000Z",
+            "vulnerabilities": [
+              {
+                "cve": {
+                  "id": "CVE-2021-44228",
+                  "sourceIdentifier": "security@apache.org",
+                  "published": "2021-12-10T00:00:00Z",
+                  "lastModified": "2025-03-31T12:00:00Z",
+                  "vulnStatus": "Analyzed",
+                  "descriptions": [
+                    {
+                      "lang": "en",
+                      "value": "Apache Log4j2 2.0-beta9 through 2.15.0 (excluding security releases) JNDI features..."
+                    }
+                  ],
+                  "metrics": {
+                    "cvssMetricV31": [
+                      {
+                        "cvssData": {
+                          "version": "3.1",
+                          "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+                          "baseScore": 10.0,
+                          "baseSeverity": "CRITICAL"
+                        },
+                        "exploitabilityScore": 3.9,
+                        "impactScore": 6.0
+                      }
+                    ]
+                  },
+                  "weaknesses": [
+                    {
+                      "source": "nvd@nist.gov",
+                      "type": "Primary",
+                      "description": [
+                        {
+                          "lang": "en",
+                          "value": "CWE-502"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "path": "/security/nvd/cves/{cve_id}",
+          "method": "GET",
+          "summary": "Get specific CVE details",
+          "direct_url": "https://services.nvd.nist.gov/rest/json/cves/2.0?cveId={cve_id}",
+          "parameters": [
+            {"name": "cve_id", "type": "path", "required": true, "description": "CVE ID (e.g., 'CVE-2021-44228')"}
+          ],
+          "sample_request": "https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2021-44228",
+          "sample_response": {
+            "resultsPerPage": 1,
+            "startIndex": 0,
+            "totalResults": 1,
+            "format": "NVD_CVE",
+            "version": "2.0",
+            "timestamp": "2025-03-31T12:00:00.000Z",
+            "vulnerabilities": [
+              {
+                "cve": {
+                  "id": "CVE-2021-44228",
+                  "sourceIdentifier": "security@apache.org",
+                  "published": "2021-12-10T00:00:00Z",
+                  "lastModified": "2025-03-31T12:00:00Z",
+                  "vulnStatus": "Analyzed",
+                  "descriptions": [
+                    {
+                      "lang": "en",
+                      "value": "Apache Log4j2 2.0-beta9 through 2.15.0 JNDI features..."
+                    }
+                  ],
+                  "metrics": {
+                    "cvssMetricV31": [
+                      {
+                        "cvssData": {
+                          "version": "3.1",
+                          "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+                          "baseScore": 10.0,
+                          "baseSeverity": "CRITICAL"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    "Query UK police force information",
+    "Get crime statistics by location",
+    "Check for malicious URLs",
+    "Search CVE vulnerabilities",
+    "Get detailed vulnerability information",
+    "Threat intelligence research",
+    "Security auditing and compliance"
+  ]
+}

@@ -62,26 +62,23 @@
       ]
     },
     {
-      "id": "quotable",
-      "name": "Quotable",
-      "base_url": "https://api.quotable.io",
+      "id": "forismatic",
+      "name": "Forismatic Quotes",
+      "base_url": "https://api.forismatic.com/api/1.0/",
       "auth_required": false,
       "endpoints": [
         {
           "path": "/entertainment/quotes/random",
           "method": "GET",
           "summary": "Get random quote",
-          "direct_url": "https://api.quotable.io/random",
-          "sample_request": "https://api.quotable.io/random",
+          "direct_url": "https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en",
+          "sample_request": "https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en",
           "sample_response": {
-            "_id": "5eb17aab2676b3b68930a70b",
-            "content": "The only way to do great work is to love what you do.",
-            "author": "Steve Jobs",
-            "tags": ["famous-quotes", "work"],
-            "authorSlug": "steve-jobs",
-            "length": 56,
-            "dateAdded": "2020-01-15",
-            "dateModified": "2020-01-15"
+            "quoteText": "The only way to do great work is to love what you do.",
+            "quoteAuthor": "Steve Jobs",
+            "senderName": "",
+            "senderLink": "",
+            "quoteLink": "http://forismatic.com/en/1234567890/"
           }
         }
       ]

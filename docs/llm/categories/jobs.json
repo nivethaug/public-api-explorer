@@ -1,0 +1,149 @@
+{
+  "category": "jobs",
+  "name": "Jobs & Career",
+  "description": "Job search, career opportunities, and employment data",
+  "prefix": "/jobs",
+  "apis": [
+    {
+      "id": "himalayas",
+      "name": "Himalayas",
+      "base_url": "https://api.himalayas.app",
+      "auth_required": false,
+      "rate_limited": false,
+      "endpoints": [
+        {
+          "path": "/jobs/himalayas/list",
+          "method": "GET",
+          "summary": "Get remote jobs from Himalayas",
+          "direct_url": "https://api.himalayas.app/v1/jobs",
+          "parameters": [
+            {"name": "limit", "type": "query", "default": 10, "description": "Number of jobs to return (1-100)"}
+          ],
+          "sample_request": "https://api.himalayas.app/v1/jobs?limit=10",
+          "sample_response": {
+            "jobs": [
+              {
+                "id": "abc123",
+                "title": "Senior Software Engineer",
+                "company": "Tech Startup",
+                "location": "Remote",
+                "type": "Full-time",
+                "salary": "$120,000 - $150,000",
+                "description": "We are looking for a senior software engineer...",
+                "url": "https://himalayas.app/jobs/abc123",
+                "posted_date": "2025-03-30"
+              }
+            ],
+            "total": 250
+          }
+        }
+      ]
+    },
+    {
+      "id": "devitjobs",
+      "name": "DevITjobs",
+      "base_url": "https://devitjobs.com/api",
+      "auth_required": false,
+      "rate_limited": false,
+      "endpoints": [
+        {
+          "path": "/jobs/devit/search",
+          "method": "GET",
+          "summary": "Search IT jobs on DevITjobs",
+          "direct_url": "https://devitjobs.com/api/jobs/search",
+          "parameters": [
+            {"name": "query", "type": "query", "required": true, "description": "Search query (e.g., 'react', 'devops')"},
+            {"name": "remote", "type": "query", "required": false, "description": "Filter for remote jobs (true/false)"}
+          ],
+          "sample_request": "https://devitjobs.com/api/jobs/search?query=react&remote=true",
+          "sample_response": {
+            "jobs": [
+              {
+                "id": "67890",
+                "title": "React Developer",
+                "company": "WebApp Inc",
+                "location": "Remote",
+                "type": "Full-time",
+                "salary": "€50,000 - €70,000",
+                "skills": ["React", "TypeScript", "Node.js"],
+                "description": "We need a skilled React developer...",
+                "url": "https://devitjobs.com/job/67890",
+                "posted_date": "2025-03-31"
+              }
+            ],
+            "total": 42
+          }
+        },
+        {
+          "path": "/jobs/devit/list",
+          "method": "GET",
+          "summary": "List IT jobs from DevITjobs",
+          "direct_url": "https://devitjobs.com/api/jobs",
+          "parameters": [
+            {"name": "skill", "type": "query", "required": false, "description": "Filter by skill (e.g., 'python', 'javascript')"}
+          ],
+          "sample_request": "https://devitjobs.com/api/jobs?skill=python",
+          "sample_response": {
+            "jobs": [
+              {
+                "id": "67891",
+                "title": "Python Backend Developer",
+                "company": "DataSoft",
+                "location": "Berlin, Germany",
+                "type": "Full-time",
+                "salary": "€60,000 - €80,000",
+                "skills": ["Python", "Django", "PostgreSQL"],
+                "description": "Looking for a Python backend developer...",
+                "url": "https://devitjobs.com/job/67891",
+                "posted_date": "2025-03-30"
+              }
+            ],
+            "total": 67
+          }
+        }
+      ]
+    },
+    {
+      "id": "searchgov",
+      "name": "Search.gov Jobs",
+      "base_url": "https://developer.search.gov",
+      "auth_required": false,
+      "rate_limited": false,
+      "endpoints": [
+        {
+          "path": "/jobs/searchgov/search",
+          "method": "GET",
+          "summary": "Search US government jobs",
+          "direct_url": "https://developer.search.gov/jobs/v1/jobs.json",
+          "parameters": [
+            {"name": "query", "type": "query", "required": false, "description": "Search query for job titles or keywords"}
+          ],
+          "sample_request": "https://developer.search.gov/jobs/v1/jobs.json?query=developer",
+          "sample_response": {
+            "jobs": [
+              {
+                "id": "usajobs-12345",
+                "title": "Software Developer",
+                "organization": "Department of Defense",
+                "location": "Washington, DC",
+                "type": "Full-time",
+                "salary": "$72,000 - $95,000",
+                "description": "We are seeking a software developer...",
+                "url": "https://www.usajobs.gov/job/12345",
+                "posted_date": "2025-03-29"
+              }
+            ],
+            "total": 1250
+          }
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    "Search for jobs by keyword",
+    "Filter jobs by location or category",
+    "Find remote work opportunities",
+    "Browse IT and developer jobs",
+    "Get career opportunities data"
+  ]
+}

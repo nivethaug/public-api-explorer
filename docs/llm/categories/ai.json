@@ -1,9 +1,43 @@
 {
   "category": "ai",
   "name": "AI & NLP",
-  "description": "Translation, sentiment analysis, and AI-related utilities",
+  "description": "Translation, sentiment analysis, QR codes, and AI-related utilities",
   "prefix": "/ai",
   "apis": [
+    {
+      "id": "twinword",
+      "name": "Twinword Sentiment Analysis",
+      "base_url": "https://twinword-sentiment-analysis.p.rapidapi.com",
+      "auth_required": false,
+      "rate_limited": true,
+      "endpoints": [
+        {
+          "path": "/ai/text/sentiment",
+          "method": "GET",
+          "summary": "Analyze text sentiment",
+          "direct_url": "https://twinword-sentiment-analysis.p.rapidapi.com/analyze/",
+          "parameters": [
+            {"name": "text", "type": "query", "required": true, "description": "Text to analyze"}
+          ],
+          "sample_request": "https://twinword-sentiment-analysis.p.rapidapi.com/analyze/?text=I love this product!",
+          "sample_response": {
+            "type": "positive",
+            "score": 0.85,
+            "ratio": 0.9,
+            "keywords": [
+              {
+                "word": "love",
+                "score": 0.9
+              },
+              {
+                "word": "product",
+                "score": 0.1
+              }
+            ]
+          }
+        }
+      ]
+    },
     {
       "id": "mymemory",
       "name": "MyMemory Translation",
@@ -45,10 +79,35 @@
       ]
     },
     {
+      "id": "qrserver",
+      "name": "QR Server",
+      "base_url": "https://api.qrserver.com/v1",
+      "auth_required": false,
+      "rate_limited": false,
+      "endpoints": [
+        {
+          "path": "/ai/qrcode",
+          "method": "GET",
+          "summary": "Generate QR code",
+          "direct_url": "https://api.qrserver.com/v1/create-qr-code/",
+          "parameters": [
+            {"name": "text", "type": "query", "required": true, "description": "Text to encode in QR code"}
+          ],
+          "sample_request": "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://example.com",
+          "sample_response": {
+            "message": "QR code generation",
+            "real_url": "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://example.com",
+            "how_to_use": "Open the URL in browser or download image"
+          }
+        }
+      ]
+    },
+    {
       "id": "randomuser",
       "name": "Random User Generator",
       "base_url": "https://randomuser.me",
       "auth_required": false,
+      "rate_limited": false,
       "endpoints": [
         {
           "path": "/ai/random/user",
@@ -116,6 +175,7 @@
   "use_cases": [
     "Analyze text sentiment",
     "Translate text between languages",
+    "Generate QR codes",
     "Generate test data",
     "Natural language processing"
   ]

@@ -65,11 +65,67 @@
           "note": "This endpoint returns actual image data, not JSON"
         }
       ]
+    },
+    {
+      "id": "unsplash",
+      "name": "Unsplash API",
+      "base_url": "https://api.unsplash.com",
+      "auth_required": true,
+      "auth_type": "OAuth2",
+      "auth_instructions": "Register at https://unsplash.com/developers to get API key. Free tier: 50 requests/hour.",
+      "status": "ACTIVE",
+      "status_notes": "Requires valid API key. Demo keys do not work. Verified operational on 2026-04-01.",
+      "endpoints": [
+        {
+          "path": "/images/unsplash/random",
+          "method": "GET",
+          "summary": "Get random photo from Unsplash",
+          "direct_url": "https://api.unsplash.com/photos/random",
+          "headers": {
+            "Authorization": "Client-ID YOUR_ACCESS_KEY"
+          },
+          "sample_request": "https://api.unsplash.com/photos/random?client_id=YOUR_ACCESS_KEY",
+          "sample_response": {
+            "id": "Dwu85P9SOIQ",
+            "created_at": "2016-05-03T11:00:28-04:00",
+            "width": 2448,
+            "height": 3264,
+            "color": "#6E633A",
+            "blur_hash": "LFC$y~wcT0WBx]WCx]WCx]WCx]WC",
+            "downloads": 1345,
+            "likes": 24,
+            "urls": {
+              "raw": "https://images.unsplash.com/photo-1417325384643-aac51acc9e5d",
+              "full": "https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?q=75&fm=jpg",
+              "regular": "https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?q=75&fm=jpg&w=1080",
+              "small": "https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?q=75&fm=jpg&w=400",
+              "thumb": "https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?q=75&fm=jpg&w=200"
+            },
+            "user": {
+              "id": "pXhwzz1Jt1M",
+              "username": "fantasticnature",
+              "name": "Fantastic Nature",
+              "links": {
+                "self": "https://api.unsplash.com/users/fantasticnature",
+                "html": "https://unsplash.com/@fantasticnature"
+              }
+            }
+          },
+          "error_response": {
+            "errors": ["OAuth error: The access token is invalid"]
+          }
+        }
+      ]
     }
   ],
   "use_cases": [
     "Get high-quality images",
     "Generate placeholder images",
+    "Access professional stock photos (requires auth)",
+    "Get random animal images",
+    "Search curated photo collections"
+  ]
+}
     "Get animal photos",
     "Content for bots and applications"
   ]

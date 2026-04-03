@@ -81,39 +81,44 @@
       ]
     },
     {
-      "id": "coincap",
-      "name": "CoinCap",
-      "base_url": "https://api.coincap.io/v2",
+      "id": "coinstats",
+      "name": "CoinStats",
+      "base_url": "https://api.coinstats.app/public/v1",
       "auth_required": false,
       "endpoints": [
         {
-          "path": "/finance/crypto/coincap/assets",
+          "path": "/finance/crypto/coinstats/coins",
           "method": "GET",
-          "summary": "List crypto assets",
-          "direct_url": "https://api.coincap.io/v2/assets",
+          "summary": "List cryptocurrencies",
+          "direct_url": "https://api.coinstats.app/public/v1/coins",
           "parameters": [
             {"name": "limit", "type": "query", "default": 50, "description": "Number of results"},
-            {"name": "search", "type": "query", "description": "Search by asset ID or symbol"}
+            {"name": "currency", "type": "query", "default": "USD", "description": "Currency for prices"}
           ],
-          "sample_request": "https://api.coincap.io/v2/assets?limit=2",
-          "sample_response": {
-            "data": [
-              {
-                "id": "bitcoin",
-                "rank": "1",
-                "symbol": "BTC",
-                "name": "Bitcoin",
-                "supply": "19654321.0000000000000000",
-                "maxSupply": "21000000.0000000000000000",
-                "marketCapUsd": "1324567890123.4567890123456789",
-                "volumeUsd24Hr": "45678901234.5678901234567890",
-                "priceUsd": "67234.1234567890123456",
-                "changePercent24Hr": "1.8765432109876543",
-                "vwap24Hr": "67000.1234567890123456"
-              }
-            ],
-            "timestamp": 1711843200000
-          }
+          "sample_request": "https://api.coinstats.app/public/v1/coins?limit=2&currency=USD",
+          "sample_response": [
+            {
+              "id": "bitcoin",
+              "symbol": "BTC",
+              "name": "Bitcoin",
+              "price": 67234.12,
+              "marketCap": 1324567890123,
+              "availableSupply": 19654321,
+              "totalSupply": 21000000,
+              "priceChange1d": 1.87,
+              "priceChange1w": -3.45,
+              "websiteUrl": "https://bitcoin.org",
+              "twitterUrl": "https://twitter.com/bitcoin"
+            },
+            {
+              "id": "ethereum",
+              "symbol": "ETH",
+              "name": "Ethereum",
+              "price": 3456.78,
+              "marketCap": 415123456789,
+              "priceChange1d": 2.34
+            }
+          ]
         }
       ]
     },

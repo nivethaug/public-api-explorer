@@ -1,0 +1,250 @@
+{
+  "category": "knowledge",
+  "name": "Knowledge & Education",
+  "description": "Dictionary, books, Wikipedia, and educational resources",
+  "prefix": "/knowledge",
+  "apis": [
+    {
+      "id": "dictionaryapi",
+      "name": "Free Dictionary API",
+      "base_url": "https://api.dictionaryapi.dev/api/v2/entries/en",
+      "auth_required": false,
+      "rate_limited": false,
+      "endpoints": [
+        {
+          "path": "/knowledge/dictionary/{word}",
+          "method": "GET",
+          "summary": "Get word definition",
+          "direct_url": "https://api.dictionaryapi.dev/api/v2/entries/en/{word}",
+          "parameters": [
+            {"name": "word", "type": "path", "required": true, "description": "Word to look up"}
+          ],
+          "sample_request": "https://api.dictionaryapi.dev/api/v2/entries/en/hello",
+          "sample_response": [
+            {
+              "word": "hello",
+              "phonetic": "həˈləʊ",
+              "phonetics": [
+                {
+                  "text": "həˈləʊ",
+                  "audio": "//ssl.gstatic.com/dictionary/static/sounds/20200429/hello--_gb_1.mp3"
+                }
+              ],
+              "origin": "early 19th century: variant of earlier hollo ; related to holla.",
+              "meanings": [
+                {
+                  "partOfSpeech": "exclamation",
+                  "definitions": [
+                    {
+                      "definition": "Used as a greeting or to begin a telephone conversation.",
+                      "example": "hello there, Katie!",
+                      "synonyms": [],
+                      "antonyms": []
+                    }
+                  ]
+                },
+                {
+                  "partOfSpeech": "noun",
+                  "definitions": [
+                    {
+                      "definition": "An utterance of 'hello'; a greeting.",
+                      "example": "she was getting polite hellos from people",
+                      "synonyms": [],
+                      "antonyms": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gutendex",
+      "name": "Gutendex",
+      "base_url": "https://gutendex.com",
+      "auth_required": false,
+      "rate_limited": false,
+      "endpoints": [
+        {
+          "path": "/knowledge/books/search",
+          "method": "GET",
+          "summary": "Search public domain books",
+          "direct_url": "https://gutendex.com/books",
+          "parameters": [
+            {"name": "search", "type": "query", "required": false, "description": "Search query (title, author, or subject)"},
+            {"name": "page", "type": "query", "default": 1, "description": "Page number"}
+          ],
+          "sample_request": "https://gutendex.com/books?search=python",
+          "sample_response": {
+            "count": 1234,
+            "next": "https://gutendex.com/books/?page=2&search=python",
+            "previous": null,
+            "results": [
+              {
+                "id": 12345,
+                "title": "Python Programming",
+                "authors": [
+                  {
+                    "name": "John Doe",
+                    "birth_year": 1980,
+                    "death_year": null
+                  }
+                ],
+                "translators": [],
+                "subjects": ["Python (Computer program language)", "Programming"],
+                "bookshelves": ["Computer Science"],
+                "languages": ["en"],
+                "copyright": false,
+                "media_type": "Text",
+                "formats": {
+                  "text/html": "https://www.gutenberg.org/ebooks/12345.html.images",
+                  "application/epub+zip": "https://www.gutenberg.org/ebooks/12345.epub3.images",
+                  "application/x-mobipocket-ebook": "https://www.gutenberg.org/ebooks/12345.kf8.images",
+                  "text/plain": "https://www.gutenberg.org/ebooks/12345.txt.utf-8",
+                  "application/rdf+xml": "https://www.gutenberg.org/ebooks/12345.rdf"
+                },
+                "download_count": 1234
+              }
+            ]
+          }
+        },
+        {
+          "path": "/knowledge/books/{book_id}",
+          "method": "GET",
+          "summary": "Get book details by ID",
+          "direct_url": "https://gutendex.com/books/{book_id}",
+          "parameters": [
+            {"name": "book_id", "type": "path", "required": true, "description": "Gutendex book ID"}
+          ],
+          "sample_request": "https://gutendex.com/books/12345",
+          "sample_response": {
+            "id": 12345,
+            "title": "Python Programming",
+            "authors": [
+              {
+                "name": "John Doe",
+                "birth_year": 1980,
+                "death_year": null
+              }
+            ],
+            "translators": [],
+            "subjects": ["Python (Computer program language)", "Programming"],
+            "bookshelves": ["Computer Science"],
+            "languages": ["en"],
+            "copyright": false,
+            "media_type": "Text",
+            "formats": {
+              "text/html": "https://www.gutenberg.org/ebooks/12345.html.images",
+              "application/epub+zip": "https://www.gutenberg.org/ebooks/12345.epub3.images",
+              "application/x-mobipocket-ebook": "https://www.gutenberg.org/ebooks/12345.kf8.images",
+              "text/plain": "https://www.gutenberg.org/ebooks/12345.txt.utf-8",
+              "application/rdf+xml": "https://www.gutenberg.org/ebooks/12345.rdf"
+            },
+            "download_count": 1234
+          }
+        }
+      ]
+    },
+    {
+      "id": "wikipedia",
+      "name": "Wikipedia",
+      "base_url": "https://en.wikipedia.org",
+      "auth_required": false,
+      "rate_limited": false,
+      "endpoints": [
+        {
+          "path": "/knowledge/wikipedia/search",
+          "method": "GET",
+          "summary": "Search Wikipedia articles",
+          "direct_url": "https://en.wikipedia.org/w/api.php?action=opensearch&format=json",
+          "parameters": [
+            {"name": "search", "type": "query", "required": true, "description": "Search query"},
+            {"name": "limit", "type": "query", "default": 10, "description": "Number of results (1-50)"}
+          ],
+          "sample_request": "https://en.wikipedia.org/w/api.php?action=opensearch&search=python+programming&limit=10&format=json",
+          "sample_response": [
+            "python programming",
+            [
+              "Python (programming language)",
+              "Python Software Foundation",
+              "Python for S60"
+            ],
+            [
+              "Python is a high-level, general-purpose programming language.",
+              "The Python Software Foundation is the organization behind Python.",
+              "Python for S60 was a port of Python to the S60 platform."
+            ],
+            [
+              "https://en.wikipedia.org/wiki/Python_(programming_language)",
+              "https://en.wikipedia.org/wiki/Python_Software_Foundation",
+              "https://en.wikipedia.org/wiki/Python_for_S60"
+            ]
+          ]
+        },
+        {
+          "path": "/knowledge/wikipedia/article/{title}",
+          "method": "GET",
+          "summary": "Get Wikipedia article summary",
+          "direct_url": "https://en.wikipedia.org/api/rest_v1/page/summary/{title}",
+          "parameters": [
+            {"name": "title", "type": "path", "required": true, "description": "Article title"}
+          ],
+          "sample_request": "https://en.wikipedia.org/api/rest_v1/page/summary/Python_(programming_language)",
+          "sample_response": {
+            "type": "standard",
+            "title": "Python (programming language)",
+            "displaytitle": "Python (programming language)",
+            "namespace": {
+              "id": 0,
+              "text": ""
+            },
+            "wikibase_item": "Q28865",
+            "titles": {
+              "canonical": "Python_(programming_language)",
+              "normalized": "Python (programming language)",
+              "display": "Python (programming language)"
+            },
+            "pageid": 23862,
+            "thumbnail": {
+              "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/200px-Python-logo-notext.svg.png",
+              "width": 200,
+              "height": 200
+            },
+            "originalimage": {
+              "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/200px-Python-logo-notext.svg.png",
+              "width": 200,
+              "height": 200
+            },
+            "lang": "en",
+            "dir": "ltr",
+            "revision": "1234567890",
+            "tid": "abc123",
+            "timestamp": "2025-03-31T00:00:00Z",
+            "description": "High-level programming language",
+            "description_source": "local",
+            "content_urls": {
+              "desktop": {
+                "page": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+                "revisions": "https://en.wikipedia.org/wiki/Python_(programming_language)?action=history",
+                "edit": "https://en.wikipedia.org/wiki/Python_(programming_language)?action=edit",
+                "talk": "https://en.wikipedia.org/wiki/Talk:Python_(programming_language)"
+              }
+            },
+            "extract": "Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.",
+            "extract_html": "<p><b>Python</b> is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    "Look up word definitions and pronunciations",
+    "Search for books by title, author, or ISBN",
+    "Get detailed book information",
+    "Search Wikipedia articles",
+    "Get article summaries",
+    "Educational research and reference"
+  ]
+}

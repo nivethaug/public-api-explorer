@@ -16,6 +16,13 @@ from app.api.routes.food import router as food_router
 from app.api.routes.images import router as images_router
 from app.api.routes.currency import router as currency_router
 from app.api.routes.stocks import router as stocks_router
+from app.api.routes.jobs import router as jobs_router
+from app.api.routes.health_fitness import router as health_fitness_router
+from app.api.routes.knowledge import router as knowledge_router
+from app.api.routes.ecommerce import router as ecommerce_router
+from app.api.routes.security import router as security_router
+from app.api.routes.science import router as science_router
+from app.api.routes.utilities import router as utilities_router
 
 # List of all routers to be included in the app
 ALL_ROUTERS = [
@@ -32,6 +39,13 @@ ALL_ROUTERS = [
     images_router,
     currency_router,
     stocks_router,
+    jobs_router,
+    health_fitness_router,
+    knowledge_router,
+    ecommerce_router,
+    security_router,
+    science_router,
+    utilities_router,
 ]
 
 __all__ = [
@@ -48,6 +62,13 @@ __all__ = [
     "images_router",
     "currency_router",
     "stocks_router",
+    "jobs_router",
+    "health_fitness_router",
+    "knowledge_router",
+    "ecommerce_router",
+    "security_router",
+    "science_router",
+    "utilities_router",
     "ALL_ROUTERS",
 ]
 
